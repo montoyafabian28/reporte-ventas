@@ -35,3 +35,51 @@ export async function getProductsDetails (name) {
   }
   return data
 }
+
+export async function signIn (email, password) {
+  try {
+    const { data, error } = await supabase.auth.signInWithPassword(
+      {
+        email,
+        password,
+        options: {
+          redirectTo: 'http://localhost:5173/'
+        }
+      }
+    )
+    if (error) {
+      throw new Error(error.message)
+    }
+    return data
+  } catch (e) {
+    throw new Error(e.message)
+  }
+}
+
+export async function signUp (email, password) {
+  try {
+    const { data, error } = await supabase.auth.signUp(
+      {
+        email,
+        password
+      }
+    )
+    if (error) {
+      throw new Error(error.message)
+    }
+    return data
+  } catch (e) {
+    throw new Error(e.message)
+  }
+}
+
+export async function signOut () {
+  try {
+    const { error } = await supabase.auth.signOut()
+    if (error) {
+      throw new Error(error.message)
+    }
+  } catch (e) {
+    throw new Error(e.message)
+  }
+}

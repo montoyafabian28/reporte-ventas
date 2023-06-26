@@ -8,3 +8,5 @@ Para hacer cambios:
 git commit -am "Mensaje"
 git pull 
 git push origin master -u
+
+Enlace: https://reporte-ventas.netlify.app/

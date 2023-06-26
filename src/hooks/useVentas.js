@@ -3,7 +3,7 @@ import { getVentas, postVenta } from '../services/reporteVenta'
 
 export function useVentas () {
   const { data, isLoading, isError, isSuccess } = useQuery({
-    queryFn: () => getVentas(),
+    queryFn: getVentas,
     queryKey: ['ventas']
   })
 
@@ -17,7 +17,7 @@ export function useVentas () {
 
 export function usePostVentas () {
   const { mutateAsync, isError, isSuccess, isLoading } = useMutation({
-    onMutate: async (newVenta) => {
+    onMutate: async () => {
       await new Promise((resolve) => setTimeout(resolve, 500))
     },
     mutationFn: postVenta
