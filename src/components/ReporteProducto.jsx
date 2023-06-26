@@ -24,12 +24,26 @@ export function ReporteProducto ({ name }) {
   }, [productDetails])
 
   return (
-    <div>
+    <div className='mt-3'>
       {reporte.length > 0 && reporte.map((reporte, index) => (
         <div key={index} className='card'>
-          <h2>Producto: {reporte.producto}</h2>
-          <h2>Cantidad total: {reporte.cantidadTotal}</h2>
-          <h2>Precio total: ${reporte.precioTotal}</h2>
+          <div className="stats stats-vertical lg:stats-horizontal bg-base-300 shadow">
+
+            <div className="stat">
+              <div className="stat-title py-5 text-center text-sm">{reporte.producto}</div>
+            </div>
+
+            <div className="stat">
+              <div className="stat-title">Cantidad Total</div>
+              <div className="stat-value text-sm">{reporte.cantidadTotal}</div>
+            </div>
+
+            <div className="stat">
+              <div className="stat-title">Total Vendido</div>
+              <div className="stat-value text-sm">${reporte.precioTotal}</div>
+            </div>
+
+          </div>
         </div>
       ))}
     </div>

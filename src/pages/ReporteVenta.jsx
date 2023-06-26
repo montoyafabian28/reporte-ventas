@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { ReporteProducto } from '../components/ReporteProducto'
 import { useVentas } from '../hooks/useVentas'
 import { getRidOfRepeated } from '../utilities/filters'
+import { Link } from 'wouter'
 
 export default function ReporteVenta () {
   const {
@@ -19,6 +20,21 @@ export default function ReporteVenta () {
 
   return (
     <>
+      {/* Navbar champu */}
+    <div className="navbar bg-base-100">
+      <div className="flex-1" >
+      <Link to="/" className="btn btn-ghost normal-case text-xl">
+        <img className='h-16' src='https://valorantinfo.com/images/es/grafiti-sospecha-de-afk_valorant_gif_45247.gif'/>
+      </Link>
+     </div>
+     <div className="flex-none">
+        <ul className="menu menu-horizontal px-1">
+
+          <li> <Link to='/venta'>Nueva Venta</Link></li>
+
+          </ul>
+        </div>
+      </div>
       <div className='container mx-auto w-full '>
         <h2 className='uppercase h2 font-bold text-3xl text-center my-3'>Ventas Realizadas</h2>
         <div className='flex flex-wrap gap-3 justify-center text-white'>

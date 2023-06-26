@@ -3,6 +3,7 @@ import { useProductos } from '../hooks/useProductos'
 import { usePostVentas } from '../hooks/useVentas'
 import { ToastContainer, toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { Link } from 'wouter'
 
 export default function FormVenta () {
   const {
@@ -81,12 +82,24 @@ export default function FormVenta () {
 
   return (
     <>
+     <div className="navbar bg-base-100">
+  <div className="flex-1" >
+    <Link to="/" className="btn btn-ghost menu normal-case text-xl"><img className='h-16 btn btn-ghost' src='https://valorantinfo.com/images/es/grafiti-sospecha-de-afk_valorant_gif_45247.gif'/>
+   </Link>
+  </div>
+  <div className="flex-none">
+    <ul className="menu menu-horizontal px-1">
+      <li><Link to='/reporte'>Reporte de Ventas</Link></li>
+      </ul>
+    </div>
+  </div>
     {(!isPostVentaError && !isPostVentaLoading && isPostVentaSuccess) && makeToast('success')}
     {isPostVentaError && makeToast('error')}
-    <form className='' onSubmit={(e) => handleSubmit(e)}>
+    <div className='hero-content flex-col  lg:flex-row-reverse'>
+    <form className='bg-base-300 shadow-md rounded px-8 pt-6 pb-8 mb-4' onSubmit={(e) => handleSubmit(e)}>
         <div className='container'>
           <label className='block' htmlFor='nombre'>Producto</label>
-          <select defaultValue='' name='producto' id='nombre' onChange={(e) => handleOnChange(e)}>
+          <select className='rounded py-1' defaultValue='' name='producto' id='nombre' onChange={(e) => handleOnChange(e)}>
             <option value='' disabled>Seleccione un producto</option>
             {productos.map((producto) => (
               <option key={producto.id} value={producto.id}>{producto.nombre}</option>
@@ -94,15 +107,15 @@ export default function FormVenta () {
           </select>
           <div>
             <label className='block' htmlFor='cantidad'>Cantidad</label>
-            <input value={cantidad} min={0} onChange={(e) => setCantidad(e.target.value)} required type='number' id='cantidad'/>
+            <input className='shadow appearance-none rounded w-full' value={cantidad} min={0} onChange={(e) => setCantidad(e.target.value)} required type='number' id='cantidad'/>
           </div>
           <div>
             <label className='block' htmlFor='cliente'>Cliente</label>
-            <input required name='cliente' type='text' id='cliente'/>
+            <input className='shadow appearance-none rounded w-full' required name='cliente' type='text' id='cliente'/>
           </div>
           <div>
             <label className='block' htmlFor='vendedor'>Vendedor</label>
-            <input required name='vendedor' type='text' id='vendedor'/>
+            <input className='shadow appearance-none rounded w-full' required name='vendedor' type='text' id='vendedor'/>
           </div>
           {(productSelected != null) && (
             <div className='text-white'>
@@ -116,8 +129,9 @@ export default function FormVenta () {
           )}
         </div>
         {isPostVentaLoading && (<span className="loading loading-spinner text-secondary block"></span>)}
-        <button className='btn btn-primary' type='submit'>Guardar</button>
+        <button className='btn btn-primary mt-2 block' type='submit'>Guardar</button>
     </form>
+    </div>
     <ToastContainer />
     </>
   )

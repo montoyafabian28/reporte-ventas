@@ -1,5 +1,6 @@
 import { Route } from 'wouter'
 import { lazy, Suspense } from 'react'
+import Footer from './components/Footer'
 
 const Home = lazy(() => import('./pages/Home'))
 const Login = lazy(() => import('./pages/Login'))
@@ -13,6 +14,7 @@ function App () {
       <Route path='/login' component={Login} />
       <Route path='/venta' component={FormVenta} />
       <Route path='/reporte' component={ReporteVenta} />
+      <Footer/>
     </Suspense>
   )
 }
